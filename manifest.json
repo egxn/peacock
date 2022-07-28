@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Peacock",
+  "version": "1.0",
+  "description": "Peacock adds a highlighter to code snippets in the browser.",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "peacock.js"
+      ]
+    }
+  ]
+}

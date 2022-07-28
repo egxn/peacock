@@ -1,0 +1,9 @@
+{
+  "name": "peacock",
+  "version": "0.0.1",
+  "description": "Peacock adds a highlighter to code snippets in the browser.",
+  "main": "peacock.js",
+  "repository": "https://github.com/egxn/peacock",
+  "author": "egxn",
+  "license": "MIT"
+}
