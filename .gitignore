@@ -1,0 +1,4 @@
+node_modules
+dist
+peacock.j*
+.parcel-cache/

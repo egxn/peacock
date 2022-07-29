@@ -2,8 +2,21 @@
   "name": "peacock",
   "version": "0.0.1",
   "description": "Peacock adds a highlighter to code snippets in the browser.",
-  "main": "peacock.js",
-  "repository": "https://github.com/egxn/peacock",
   "author": "egxn",
-  "license": "MIT"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "license": "MIT",
+  "repository": "https://github.com/egxn/peacock",
+  "source": "peacock.ts",
+  "devDependencies": {
+    "@parcel/config-webextension": "^2.6.2",
+    "@parcel/reporter-bundle-analyzer": "^2.6.2",
+    "parcel": "^2.6.2"
+  },
+  "dependencies": {
+    "highlight.js": "^11.6.0"
+  },
+  "scripts": {
+    "tsc": "parcel build ",
+    "build": "parcel build manifest.json --config @parcel/config-webextension"
+  }
 }
