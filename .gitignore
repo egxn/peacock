@@ -1,4 +1,5 @@
 node_modules
 dist
-peacock.j*
+peacock.js
+peacock.js.map
 .parcel-cache/

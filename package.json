@@ -16,7 +16,8 @@
     "highlight.js": "^11.6.0"
   },
   "scripts": {
-    "tsc": "parcel build ",
-    "build": "parcel build manifest.json --config @parcel/config-webextension"
+    "tsc": "parcel build --dist-dir ./ --no-source-maps",
+    "build": "yarn tsc && parcel build manifest.json --config @parcel/config-webextension",
+    "clean": "rm -rf peacock.j* && rm -rf dist"
   }
 }

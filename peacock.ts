@@ -1,6 +1,6 @@
 import hljs from "highlight.js";
 
-const HIGHLIGHT_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css';
+const HIGHLIGHT_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/monokai.min.css';
 
 function addHighlightCSS() {
   return new Promise<void>((resolve, reject) => {
@@ -10,7 +10,7 @@ function addHighlightCSS() {
     highlightLink.type = 'text/css';
     highlightLink.onload = () => resolve();
     highlightLink.onerror = () => reject();
-    document.head.appendChild(highlightLink);
+    document.head.appendChild(highlightLink)
   });
 }
 
@@ -19,26 +19,37 @@ function createPeacockButton(): HTMLButtonElement {
   button.innerText = '🦚';
   button.style.alignItems = 'center';
   button.style.backgroundColor = '#000';
-  button.style.borderBottomRightRadius = '50%';
-  button.style.borderTopRightRadius = '50%';
+  button.style.borderBottomRightRadius = '35%';
+  button.style.borderTopRightRadius = '35%';
   button.style.display = 'flex';
-  button.style.height = '25px';
+  button.style.height = '30px';
   button.style.justifyContent = 'center';
   button.style.position = 'absolute';
-  button.style.right = '-25px';
+  button.style.right = '-30px';
   button.style.top = '10px';
-  button.style.width = '20px';
+  button.style.width = '30px';
+  button.style.fontSize = '22px';
+  button.style.border = 'none';
+  button.ariaLabel = 'Higlight code';
 
   return button;
 }
 
-function removeNumbersAtTheStart(str: string): string {
-  const numbers = str.match(/^\d+/);
-  console.log(numbers);
-  if (numbers) {
-    return str.replace(numbers[0], '');
+
+function trimStartNumbers(str: string): string {
+  const regex = /^\d+/;
+  const match = regex.exec(str);
+  if (match) {
+    return str.substring(match[0].length);
   }
+
   return str;
+}
+
+function removeStartNumbers(str: string): string {
+  const lines = str.split('\n').map(line => line.trimStart());
+  const trimmedLines = lines.map(line => trimStartNumbers(line));
+  return trimmedLines.join('\n');
 }
 
 function addClickEvent(button: HTMLButtonElement, pre: HTMLPreElement) {
@@ -47,16 +58,16 @@ function addClickEvent(button: HTMLButtonElement, pre: HTMLPreElement) {
     const newPreNode = document.createElement('pre');
     if (!hasCodeTag) {
       const codeNode = document.createElement('code');
-      const code = removeNumbersAtTheStart(pre.innerText).replace(/[^\x00-\x7F]/g, "");
-      console.log(code);
-      codeNode.innerHTML = code;
+      const code = pre.innerText;
+      // Remove numbers at the start and end of each line  
+      // removeStartNumbers(pre.innerText).replace(/[^\x00-\x7F]/g, "");
+      codeNode.innerHTML = hljs.highlightAuto(code).value;
       newPreNode.appendChild(codeNode);
     } else {
       newPreNode.innerHTML = pre.innerHTML;
     }
 
     pre?.parentNode?.replaceChild(newPreNode, pre);
-    hljs.highlightElement(pre);
   });
 }
 
@@ -67,7 +78,6 @@ function wrapCodeNodes() {
 
     const divNode: HTMLDivElement = document.createElement('div');
     divNode.style.position = 'relative';
-    divNode.style.border = '1px solid green';
 
     const newPreNode: HTMLPreElement = document.createElement('pre');
     const buttonNode: HTMLButtonElement = createPeacockButton();
