@@ -2,11 +2,15 @@
   "manifest_version": 2,
   "name": "Peacock",
   "version": "1.0",
-  "description": "Peacock adds a highlighter to code snippets in the browser.",
+  "description": "Peacock adds a optional highlighter to code snippets in the browser.",
+  "icons": {
+    "48": "icons/icon_48.png",
+    "96": "icons/icon_96.png"
+  },
   "content_scripts": [
     {
       "matches": [
-        "*://*/*"
+        "https://*.oreilly.com/*"
       ],
       "js": [
         "peacock.js"

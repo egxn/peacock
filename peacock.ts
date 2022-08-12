@@ -1,6 +1,6 @@
 import hljs from "highlight.js";
 
-const HIGHLIGHT_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/monokai.min.css';
+const HIGHLIGHT_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/github.min.css';
 
 function addHighlightCSS() {
   return new Promise<void>((resolve, reject) => {
@@ -64,7 +64,7 @@ function addClickEvent(button: HTMLButtonElement, pre: HTMLPreElement) {
       codeNode.innerHTML = hljs.highlightAuto(code).value;
       newPreNode.appendChild(codeNode);
     } else {
-      newPreNode.innerHTML = pre.innerHTML;
+      newPreNode.innerHTML = hljs.highlightAuto(pre.innerHTML).value;
     }
 
     pre?.parentNode?.replaceChild(newPreNode, pre);

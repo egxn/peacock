@@ -1,6 +1,6 @@
 {
   "name": "peacock",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Peacock adds a highlighter to code snippets in the browser.",
   "author": "egxn",
   "browserslist": "> 0.5%, last 2 versions, not dead",
